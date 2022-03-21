@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styledComponents from "styled-components";
+import styled from "styled-components";
 
 function Navigation() {
-  const StyledNavDiv = styledComponents.div`
-    margin-bottom: 2rem;
+  const StyledNavDiv = styled.div`
+    position: fixed;
+    width: 100%;
   `;
   return (
     <StyledNavDiv>

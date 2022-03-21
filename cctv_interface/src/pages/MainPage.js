@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import styledComponents from "styled-components";
-const StyledBoxDiv = styledComponents.div`
+import styled from "styled-components";
+const StyledListDiv = styled.div`
   border: 1px solid black;
   padding: 10px;
   height: 100px;
@@ -9,6 +9,11 @@ const StyledBoxDiv = styledComponents.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 50%;
+`;
+const StlyedListBoxDiv = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 function MainPage() {
   const [objects, setObjects] = useState([
@@ -23,13 +28,15 @@ function MainPage() {
       <h1>메인 페이지(CSS는 마지막에 하겠습니다^^)</h1>
       <hr />
       {objects.map((object) => (
-        <StyledBoxDiv>
-          <div>
-            <h5>번호: {object.id}</h5>
-            <h5>제목: {object.title}</h5>
-          </div>
-          <Button variant="outline-primary">이동</Button>
-        </StyledBoxDiv>
+        <StlyedListBoxDiv>
+          <StyledListDiv>
+            <div>
+              <h5>번호: {object.id}</h5>
+              <h5>제목: {object.title}</h5>
+            </div>
+            <Button variant="outline-primary">이동</Button>
+          </StyledListDiv>
+        </StlyedListBoxDiv>
       ))}
     </div>
   );
