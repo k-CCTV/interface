@@ -25,7 +25,7 @@ function MainPage() {
   ]);
   return (
     <div className="MainPage">
-      <h1>메인 페이지(CSS는 마지막에 하겠습니다^^)</h1>
+      <h1>메인 페이지</h1>
       <hr />
       {objects.map((object) => (
         <StlyedListBoxDiv>
