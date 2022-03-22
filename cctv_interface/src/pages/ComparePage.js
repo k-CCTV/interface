@@ -19,10 +19,7 @@ const StyledTabDiv = styled.div`
     background-color: #ff8d1e;
   }
 `;
-const StyledCompareDiv = styled.div`
-  display: flex;
-  width: 50%;
-`;
+const StyledCompareDiv = styled.div``;
 function ComparePage() {
   const [Tab, setTab] = useState(0);
   function TabContent(props) {
@@ -80,7 +77,6 @@ function ComparePage() {
           </Nav.Item>
         </Nav>
       </StyledTabDiv>
-
       <TabContent Tab={Tab} />
     </div>
   );
