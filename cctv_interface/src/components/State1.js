@@ -7,6 +7,7 @@ const StyledCarouselDiv = styled.div`
   justify-items: center;
   justify-content: center;
   padding-bottom: 50px;
+  padding-top: 50px;
   z-index: 1;
   .active.carousel-item > img {
     display: block;
