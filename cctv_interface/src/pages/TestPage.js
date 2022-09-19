@@ -1,35 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../css/test.css";
 import { Icon } from "@iconify/react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-function MainPage() {
-  let [boardList, setBoardList] = useState([]);
-  let [view, setView] = useState(true);
-  let [viewStr, setViewStr] = useState("tableView");
-  let navigate = useNavigate();
-  function getData() {
-    axios.get("http://localhost:8080").then((res) => {
-      setBoardList(res.data);
-    });
-  }
-  function getStatus(a) {
-    if (a === 0) return "NULL";
-    else if (a === 1) return "정상";
-    else if (a === 2) return "경고";
-    else if (a === 3) return "위험";
-  }
-  function makeView(view) {
-    if (view) setViewStr("tableView");
-    else setViewStr("gridView");
-  }
-  useEffect(() => {
-    getData();
-  }, []);
-
+function TestPage() {
   return (
-    <div className="mainPage">
+    <div className="testPage">
       <div className="app-container">
         <div className="sidebar">
           <div className="sidebar-header">
@@ -104,9 +79,7 @@ function MainPage() {
             </button>
             <button
               className="app-content-headerButton"
-              onClick={() => {
-                navigate("/post");
-              }}
+              //   onclick="window.location.href='/post'"
             >
               Add Image
             </button>
@@ -145,29 +118,15 @@ function MainPage() {
                   </div>
                 </div>
               </div>
-              <button
-                className="action-button list active"
-                title="List View"
-                onClick={() => {
-                  setView(true);
-                  makeView(view);
-                }}
-              >
+              <button className="action-button list active" title="List View">
                 <Icon icon="bi:list-ol" width="24" height="24" />
               </button>
-              <button
-                className="action-button grid"
-                title="Grid View"
-                onClick={() => {
-                  setView(false);
-                  makeView(view);
-                }}
-              >
+              <button className="action-button grid" title="Grid View">
                 <Icon icon="bi:grid-3x3" width="24" height="24" />
               </button>
             </div>
           </div>
-          <div className={"cctv-area-wrapper " + viewStr}>
+          <div className="cctv-area-wrapper tableView">
             <div className="cctv-header">
               <div className="cctv-cell image">
                 CCTV
@@ -206,46 +165,39 @@ function MainPage() {
                 </button>
               </div>
             </div>
-            {boardList.map((a, idx) => {
-              return (
-                <div className="cctv-row" key={a.id}>
-                  <div className="cctv-cell image">
-                    <img src={boardList[idx].files} alt="" />
-
-                    <span
-                      className="searchTitle"
-                      onClick={() => {
-                        navigate(`/board/${a.id}`);
-                      }}
-                    >
-                      {a.title}
-                    </span>
-                  </div>
-                  <div className="cctv-cell author">
-                    <span className="cell-label">작성자</span>
-                    <span className="searchAuthor">{a.author}</span>
-                  </div>
-                  <div className="cctv-cell status-cell">
-                    <span className="cell-label">상태:</span>
-                    <span className={"status" + a.status}>
-                      {getStatus(a.status)}
-                    </span>
-                  </div>
-                  <div className="cctv-cell content">
-                    <span className="cell-label">설명:</span>
-                    <span className="searchContent">{a.content}</span>
-                  </div>
-                  <div className="cctv-cell created_date">
-                    <span className="cell-label">작성 날짜: </span>
-                    {a.created_date}
-                  </div>
-                  <div className="cctv-cell modified_date">
-                    <span className="cell-label">수정 날짜: </span>
-                    {a.modified_date}
-                  </div>
-                </div>
-              );
-            })}
+            {/* {% for board in boards %}
+          <div className="cctv-row">
+            <button className="cell-more-button">
+              <span className="iconify" data-icon="feather:more-vertical" data-width="18" data-height="18"></span>
+            </button>
+              <div className="cctv-cell image">
+                {% if board.fileType == ".mp4" %}
+                <img src="media/images/thumbnail.png" />
+                {% else %}
+                <img src="{{board.image.url}}" />
+                {% endif %}
+                <a href="/post/{{ board.id }}" id="searchTitle">
+                  <span className="searchTitle">{{ board.title }}</span>
+                </a>
+              </div>
+            <div className="cctv-cell author"><span className="cell-label">작성자</span><span className="searchAuthor">{{ board.author }}</span></div>
+            <div className="cctv-cell status-cell">
+              <span className="cell-label">상태:</span>
+              {% if board.status == 1 %}
+              <span className="status normal">정상</span>
+              {% elif board.status == 2 %}
+              <span className="status warn">경고</span>
+              {% elif board.status == 3 %}
+              <span className="status danger">위험</span>
+              {% else %}
+              <span className="status disabled">NULL</span>
+              {% endif %}
+            </div>
+            <div className="cctv-cell content"><span className="cell-label">설명:</span><span className="searchContent">{{ board.content }}</span></div>
+            <div className="cctv-cell created_date"><span className="cell-label">작성 날짜:</span>{{ board.created_date | date:"Y-m-d h:i" }}</div>
+            <div className="cctv-cell modified_date"><span className="cell-label">수정 날짜:</span>{{ board.modified_date | date:"Y-m-d h:i" }}</div>
+          </div>
+          {% endfor %} */}
           </div>
         </div>
       </div>
@@ -253,4 +205,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default TestPage;
