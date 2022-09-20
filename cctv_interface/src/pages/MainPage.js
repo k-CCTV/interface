@@ -9,11 +9,7 @@ function MainPage() {
   let [view, setView] = useState(true);
   let [viewStr, setViewStr] = useState("tableView");
   let navigate = useNavigate();
-  function getData() {
-    axios.get("http://localhost:8080").then((res) => {
-      setBoardList(res.data);
-    });
-  }
+
   function getStatus(a) {
     if (a === 0) return "NULL";
     else if (a === 1) return "정상";
@@ -25,7 +21,9 @@ function MainPage() {
     else setViewStr("gridView");
   }
   useEffect(() => {
-    getData();
+    axios.get("http://localhost:8080").then((res) => {
+      setBoardList(res.data);
+    });
   }, []);
 
   return (

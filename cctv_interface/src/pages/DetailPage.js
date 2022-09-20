@@ -10,17 +10,11 @@ function DetailPage() {
   let [board, setBoard] = useState("");
   let [fileType, setFileType] = useState("");
   let navigate = useNavigate();
-  //   const getData = async () => {
-  //     await axios.get(`http://localhost:8080/board/${params.id}`).then((res) => {
-  //       setBoard(res.data);
-  //     });
-  //   };
+
   const deleteBoard = async () => {
-    await axios
-      .delete(`http://localhost:8080/board/${params.id}`)
-      .then((res) => {
-        navigate("/");
-      });
+    await axios.delete(`http://localhost:8080/board/${params.id}`).then(() => {
+      navigate("/");
+    });
   };
   function getStatus(a) {
     if (a === 0) return "NULL";
@@ -37,9 +31,6 @@ function DetailPage() {
   function output() {
     if (fileType === ".mp4")
       return (
-        // <video className="info-image">
-        //   <source src={board.files} type="video/mp4" />
-        // </video>
         <ReactPlayer
           url={board.files}
           playing={true}
@@ -49,19 +40,14 @@ function DetailPage() {
       );
     else return <img src={board.files} alt="" className="info-image" />;
   }
-  //   useEffect(() => {
-  //     getData();
-  //   }, []);
+
   useEffect(() => {
     axios.get(`http://localhost:8080/board/${params.id}`).then((res) => {
       setBoard(res.data);
-      //   let idx = board.files.indexOf(".");
-      //   console.log(idx);
-      //   console.log(board.files.substring(idx, board.files.length - 1));
-      //   setFileType(board.files.substring(idx, board.files.length - 1));
       findType(board.files);
     });
-  }, []);
+  }, [params.id, board.files]);
+
   return (
     <div className="detailPage">
       <div className="app-container">
@@ -184,14 +170,14 @@ function DetailPage() {
               </li>
             </ul>
           </div>
-          <button
+          {/* <button
             className="app-content-headerButton1"
             onClick={() => {
               findType(board.files);
             }}
           >
             동영상 Play (수정 예정)
-          </button>
+          </button> */}
           {output()}
         </div>
       </div>
