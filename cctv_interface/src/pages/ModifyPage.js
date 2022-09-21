@@ -53,7 +53,10 @@ function ModifyPage() {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then(navigate("/"))
+      .then(() => {
+        navigate("/");
+        window.location.reload();
+      })
       .catch((error) => {
         console.log(error);
       });
