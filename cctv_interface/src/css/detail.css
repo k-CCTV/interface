@@ -15,7 +15,6 @@
   --action-color: #2869ff;
   --action-color-hover: #6291fd;
   --app-content-secondary-color: #1d283c;
-  overflow: auto;
 }
 
 .light:root {
@@ -38,6 +37,7 @@ html {
 }
 
 body {
+  overflow: auto;
   font-family: "Poppins", sans-serif;
   background-color: var(--app-bg);
   -webkit-font-smoothing: antialiased;

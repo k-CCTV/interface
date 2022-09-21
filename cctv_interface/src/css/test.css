@@ -42,7 +42,7 @@ html {
 }
 
 body {
-  overflow: hidden;
+  overflow: auto;
   font-family: "Poppins", sans-serif;
   background-color: var(--app-bg);
   -webkit-font-smoothing: antialiased;
@@ -432,6 +432,7 @@ body {
   height: 32px;
   border-radius: 6px;
   margin-right: 6px;
+  cursor: pointer;
 }
 @media screen and (max-width: 780px) {
   .tableView .cctv-cell {
@@ -647,7 +648,12 @@ body {
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 16px;
+  cursor: pointer;
 }
 .gridView .cell-label {
   opacity: 0.6;
+}
+
+.searchTitle {
+  cursor: pointer;
 }

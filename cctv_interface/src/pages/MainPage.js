@@ -208,8 +208,13 @@ function MainPage() {
               return (
                 <div className="cctv-row" key={a.id}>
                   <div className="cctv-cell image">
-                    <img src={boardList[idx].files} alt="" />
-
+                    <img
+                      src={boardList[idx].files}
+                      alt=""
+                      onClick={() => {
+                        navigate(`/board/${a.id}`);
+                      }}
+                    />
                     <span
                       className="searchTitle"
                       onClick={() => {
