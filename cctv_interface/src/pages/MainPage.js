@@ -3,6 +3,8 @@ import "../css/main.css";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
+import "moment/locale/ko";
 
 function MainPage() {
   let [boardList, setBoardList] = useState([]);
@@ -17,9 +19,13 @@ function MainPage() {
     else if (a === 2) return "경고";
     else if (a === 3) return "위험";
   }
+
   // function videoImage(a) {
   //   let idx = a.indexOf(".");
   //   setFileType(a.substr(idx, a.length - 1));
+  //   let fileLength = a.length;
+  //   let fileDot = a.lastIndexOf(".");
+  //   setFileType(a.substr(fileDot + 1, fileLength));
   //   if (fileType === ".mp4")
   //     return (
   //       <Icon icon="dashicons:video-alt3" color="red" width="24" height="24" />
@@ -35,6 +41,10 @@ function MainPage() {
   //       />
   //     );
   // }
+  function timeSetting(a) {
+    let time = moment(a).format("YY-MM-DD HH:mm:ss");
+    return time;
+  }
   function makeView(view) {
     if (view) setViewStr("tableView");
     else setViewStr("gridView");
@@ -133,7 +143,7 @@ function MainPage() {
               className="search-bar"
               placeholder="Search for title"
               type="text"
-              //   onkeyup="searchFunc()"
+              // onChange={inputChange}
             />
             <div className="app-content-actions-wrapper">
               <div className="filter-button-wrapper">
@@ -260,11 +270,11 @@ function MainPage() {
                   </div>
                   <div className="cctv-cell created_date">
                     <span className="cell-label">작성 날짜: </span>
-                    {a.created_date}
+                    {timeSetting(a.created_date)}
                   </div>
                   <div className="cctv-cell modified_date">
                     <span className="cell-label">수정 날짜: </span>
-                    {a.modified_date}
+                    {timeSetting(a.modified_date)}
                   </div>
                 </div>
               );

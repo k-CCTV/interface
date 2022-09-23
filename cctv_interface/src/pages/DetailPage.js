@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "../css/detail.css";
 import ReactPlayer from "react-player";
+import moment from "moment";
+import "moment/locale/ko";
 
 function DetailPage() {
   let params = useParams();
@@ -40,7 +42,10 @@ function DetailPage() {
       );
     else return <img src={board.files} alt="" className="info-image" />;
   }
-
+  function timeSetting(a) {
+    let time = moment(a).format("YY-MM-DD HH:mm:ss");
+    return time;
+  }
   useEffect(() => {
     axios.get(`http://localhost:8080/board/${params.id}`).then((res) => {
       setBoard(res.data);
@@ -166,7 +171,7 @@ function DetailPage() {
               </li>
               <li className="info-list-item">
                 <Icon icon="bi:calendar-day" width="24" height="24" />
-                <span>수정일 : {board.modified_date}</span>
+                <span>수정일 : {timeSetting(board.modified_date)}</span>
               </li>
             </ul>
           </div>
