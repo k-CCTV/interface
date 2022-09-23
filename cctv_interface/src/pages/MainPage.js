@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../css/test.css";
+import "../css/main.css";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,6 +8,7 @@ function MainPage() {
   let [boardList, setBoardList] = useState([]);
   let [view, setView] = useState(true);
   let [viewStr, setViewStr] = useState("tableView");
+  // let [fileType, setFileType] = useState("");
   let navigate = useNavigate();
 
   function getStatus(a) {
@@ -16,6 +17,24 @@ function MainPage() {
     else if (a === 2) return "경고";
     else if (a === 3) return "위험";
   }
+  // function videoImage(a) {
+  //   let idx = a.indexOf(".");
+  //   setFileType(a.substr(idx, a.length - 1));
+  //   if (fileType === ".mp4")
+  //     return (
+  //       <Icon icon="dashicons:video-alt3" color="red" width="24" height="24" />
+  //     );
+  //   else
+  //     return (
+  //       <img
+  //         src={a.files}
+  //         alt=""
+  //         onClick={() => {
+  //           navigate(`/board/${a.id}`);
+  //         }}
+  //       />
+  //     );
+  // }
   function makeView(view) {
     if (view) setViewStr("tableView");
     else setViewStr("gridView");
@@ -208,8 +227,9 @@ function MainPage() {
               return (
                 <div className="cctv-row" key={a.id}>
                   <div className="cctv-cell image">
+                    {/* {videoImage(a)} */}
                     <img
-                      src={boardList[idx].files}
+                      src={a.files}
                       alt=""
                       onClick={() => {
                         navigate(`/board/${a.id}`);

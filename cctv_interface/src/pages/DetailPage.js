@@ -170,14 +170,6 @@ function DetailPage() {
               </li>
             </ul>
           </div>
-          {/* <button
-            className="app-content-headerButton1"
-            onClick={() => {
-              findType(board.files);
-            }}
-          >
-            동영상 Play (수정 예정)
-          </button> */}
           {output()}
         </div>
       </div>

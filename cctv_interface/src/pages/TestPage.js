@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/test.css";
+import "../css/main.css";
 import { Icon } from "@iconify/react";
 
 function TestPage() {
