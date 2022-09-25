@@ -11,7 +11,7 @@ function MainPage() {
   let [boardList, setBoardList] = useState([]);
   let [view, setView] = useState(true);
   let [viewStr, setViewStr] = useState("tableView");
-  // let [fileType, setFileType] = useState("");
+
   let navigate = useNavigate();
 
   function getStatus(a) {
@@ -21,27 +21,10 @@ function MainPage() {
     else if (a === 3) return "위험";
   }
 
-  // function videoImage(a) {
-  //   let idx = a.indexOf(".");
-  //   setFileType(a.substr(idx, a.length - 1));
-  //   let fileLength = a.length;
-  //   let fileDot = a.lastIndexOf(".");
-  //   setFileType(a.substr(fileDot + 1, fileLength));
-  //   if (fileType === ".mp4")
-  //     return (
-  //       <Icon icon="dashicons:video-alt3" color="red" width="24" height="24" />
-  //     );
-  //   else
-  //     return (
-  //       <img
-  //         src={a.files}
-  //         alt=""
-  //         onClick={() => {
-  //           navigate(`/board/${a.id}`);
-  //         }}
-  //       />
-  //     );
-  // }
+  function imageError(a) {
+    a.target.src =
+      "https://cdn.pixabay.com/photo/2015/09/15/17/18/vector-video-player-941434__340.png";
+  }
   function timeSetting(a) {
     let time = moment(a).format("YY-MM-DD HH:mm:ss");
     return time;
@@ -151,6 +134,7 @@ function MainPage() {
                     <img
                       src={a.files}
                       alt=""
+                      onError={imageError}
                       onClick={() => {
                         navigate(`/board/${a.id}`);
                       }}
