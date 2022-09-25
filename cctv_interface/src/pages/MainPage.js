@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/ko";
+import Sidebar from "../components/Sidebar";
 
 function MainPage() {
   let [boardList, setBoardList] = useState([]);
@@ -58,71 +59,7 @@ function MainPage() {
   return (
     <div className="mainPage">
       <div className="app-container">
-        <div className="sidebar">
-          <div className="sidebar-header">
-            <div className="app-icon">
-              <Icon icon="bxs:cctv" width="36" height="36" />
-            </div>
-          </div>
-          <ul className="sidebar-list">
-            <li className="sidebar-list-item active">
-              <a href="/">
-                <Icon icon="ant-design:home-outlined" width="24" height="24" />
-                <span>Home</span>
-              </a>
-            </li>
-            <li className="sidebar-list-item">
-              <a href="/danger">
-                <Icon
-                  icon="ph:traffic-signal-light"
-                  color="red"
-                  width="24"
-                  height="24"
-                />
-                <span>Danger</span>
-              </a>
-            </li>
-            <li className="sidebar-list-item">
-              <a href="/warn">
-                <Icon
-                  icon="ph:traffic-signal-light"
-                  color="orange"
-                  width="24"
-                  height="24"
-                />
-                <span>Warn</span>
-              </a>
-            </li>
-            <li className="sidebar-list-item">
-              <a href="/normal">
-                <Icon
-                  icon="ph:traffic-signal-light"
-                  color="green"
-                  width="24"
-                  height="24"
-                />
-                <span>Normal</span>
-              </a>
-            </li>
-            <li className="sidebar-list-item">
-              <a href="/null">
-                <Icon
-                  icon="ph:traffic-signal-light"
-                  color="grey"
-                  width="24"
-                  height="24"
-                />
-                <span>Null</span>
-              </a>
-            </li>
-            <li className="sidebar-list-item">
-              <a href="/test">
-                <Icon icon="ph:traffic-signal-light" width="24" height="24" />
-                <span>Test Server</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+        <Sidebar />
         <div className="app-content">
           <div className="app-content-header">
             <h1 className="app-content-headerText">CCTV List</h1>
@@ -143,35 +80,8 @@ function MainPage() {
               className="search-bar"
               placeholder="Search for title"
               type="text"
-              // onChange={inputChange}
             />
             <div className="app-content-actions-wrapper">
-              <div className="filter-button-wrapper">
-                <button className="action-button filter jsFilter">
-                  <span>Filter</span>
-                  <Icon icon="line-md:image-twotone" width="24" height="24" />
-                </button>
-                <div className="filter-menu">
-                  <label>Category</label>
-                  <select>
-                    <option>All Categories</option>
-                    <option>Furniture</option>
-                    <option>Decoration</option>
-                    <option>Kitchen</option>
-                    <option>Bathroom</option>
-                  </select>
-                  <label>Status</label>
-                  <select>
-                    <option>All Status</option>
-                    <option>Active</option>
-                    <option>Disabled</option>
-                  </select>
-                  <div className="filter-menu-buttons">
-                    <button className="filter-button reset">Reset</button>
-                    <button className="filter-button apply">Apply</button>
-                  </div>
-                </div>
-              </div>
               <button
                 className="action-button list active"
                 title="List View"
