@@ -10,10 +10,21 @@ import Sidebar from "../components/Sidebar";
 function MainPage() {
   let [boardList, setBoardList] = useState([]);
   let [view, setView] = useState(true);
-  let [viewStr, setViewStr] = useState("tableView");
+  let [viewStr, setViewStr] = useState("listView");
+  let [gridStr, setGridStr] = useState("");
+  let [listStr, setListStr] = useState("active");
 
   let navigate = useNavigate();
 
+  function viewActive() {
+    if (view) {
+      setListStr("active");
+      setGridStr("");
+    } else {
+      setListStr("");
+      setGridStr("active");
+    }
+  }
   function darkMode() {
     var modeSwitch = document.querySelector(".mode-switch");
     modeSwitch.addEventListener("click", function () {
@@ -37,7 +48,7 @@ function MainPage() {
     return time;
   }
   function makeView(view) {
-    if (view) setViewStr("tableView");
+    if (view) setViewStr("listView");
     else setViewStr("gridView");
   }
   useEffect(() => {
@@ -77,21 +88,23 @@ function MainPage() {
             />
             <div className="app-content-actions-wrapper">
               <button
-                className="action-button list"
+                className={"action-button list " + listStr}
                 title="List View"
                 onClick={() => {
                   setView(true);
                   makeView(view);
+                  viewActive();
                 }}
               >
                 <Icon icon="bi:list-ol" width="24" height="24" />
               </button>
               <button
-                className="action-button grid"
+                className={"action-button grid " + gridStr}
                 title="Grid View"
                 onClick={() => {
                   setView(false);
                   makeView(view);
+                  viewActive();
                 }}
               >
                 <Icon icon="bi:grid-3x3" width="24" height="24" />

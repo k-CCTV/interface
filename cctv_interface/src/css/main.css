@@ -325,7 +325,7 @@ body {
   padding: 0 4px;
 }
 
-.tableView .cctv-header {
+.listView .cctv-header {
   display: flex;
   align-items: center;
   border-radius: 4px;
@@ -333,19 +333,19 @@ body {
   position: sticky;
   top: 0;
 }
-.tableView .cctv-row {
+.listView .cctv-row {
   display: flex;
   align-items: center;
   border-radius: 4px;
 }
-.tableView .cctv-row:hover {
+.listView .cctv-row:hover {
   box-shadow: var(--filter-shadow);
   background-color: var(--app-content-secondary-color);
 }
-.tableView .cctv-row .cell-more-button {
+.listView .cctv-row .cell-more-button {
   display: none;
 }
-.tableView .cctv-cell {
+.listView .cctv-cell {
   flex: 1;
   padding: 8px 16px;
   color: var(--app-content-main-color);
@@ -353,7 +353,7 @@ body {
   display: flex;
   align-items: center;
 }
-.tableView .cctv-cell img {
+.listView .cctv-cell img {
   width: 32px;
   height: 32px;
   border-radius: 6px;
@@ -361,38 +361,38 @@ body {
   cursor: pointer;
 }
 @media screen and (max-width: 780px) {
-  .tableView .cctv-cell {
+  .listView .cctv-cell {
     font-size: 12px;
   }
-  .tableView .cctv-cell.image span {
+  .listView .cctv-cell.image span {
     display: none;
   }
-  .tableView .cctv-cell.image {
+  .listView .cctv-cell.image {
     flex: 0.2;
   }
 }
 @media screen and (max-width: 520px) {
-  .tableView .cctv-cell.author,
-  .tableView .cctv-cell.content {
+  .listView .cctv-cell.author,
+  .listView .cctv-cell.content {
     display: none;
   }
-  .tableView .cctv-cell.status-cell {
+  .listView .cctv-cell.status-cell {
     flex: 0.4;
   }
-  .tableView .cctv-cell.created_date,
-  .tableView .cctv-cell.modified_date {
+  .listView .cctv-cell.created_date,
+  .listView .cctv-cell.modified_date {
     flex: 0.2;
   }
 }
 @media screen and (max-width: 480px) {
-  .tableView .cctv-cell.created_date {
+  .listView .cctv-cell.created_date {
     display: none;
   }
-  .tableView .cctv-cell.modified_date {
+  .listView .cctv-cell.modified_date {
     flex: 0.4;
   }
 }
-.tableView .sort-button {
+.listView .sort-button {
   padding: 0;
   background-color: transparent;
   border: none;
@@ -402,13 +402,13 @@ body {
   display: flex;
   align-items: center;
 }
-.tableView .sort-button:hover {
+.listView .sort-button:hover {
   color: var(--action-color);
 }
-.tableView .sort-button span {
+.listView .sort-button span {
   width: 12px;
 }
-.tableView .cell-label {
+.listView .cell-label {
   display: none;
 }
 
