@@ -19,6 +19,13 @@ function DetailPage() {
       navigate("/");
     });
   };
+  function darkMode() {
+    var modeSwitch = document.querySelector(".mode-switch");
+    modeSwitch.addEventListener("click", function () {
+      document.documentElement.classList.toggle("light");
+      modeSwitch.classList.toggle("active");
+    });
+  }
   function getStatus(a) {
     if (a === 0) return "NULL";
     else if (a === 1) return "정상";
@@ -61,7 +68,11 @@ function DetailPage() {
         <div className="app-content">
           <div className="app-content-header">
             <h1 className="app-content-headerText">{board.title}</h1>
-            <button className="mode-switch" title="Switch Theme">
+            <button
+              className="mode-switch"
+              title="Switch Theme"
+              onClick={darkMode}
+            >
               <Icon icon="eva:moon-fill" width="24" height="24" />
             </button>
             <button

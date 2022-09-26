@@ -14,6 +14,13 @@ function MainPage() {
 
   let navigate = useNavigate();
 
+  function darkMode() {
+    var modeSwitch = document.querySelector(".mode-switch");
+    modeSwitch.addEventListener("click", function () {
+      document.documentElement.classList.toggle("light");
+      modeSwitch.classList.toggle("active");
+    });
+  }
   function getStatus(a) {
     if (a === 0) return "NULL";
     else if (a === 1) return "정상";
@@ -46,7 +53,11 @@ function MainPage() {
         <div className="app-content">
           <div className="app-content-header">
             <h1 className="app-content-headerText">CCTV List</h1>
-            <button className="mode-switch" title="Switch Theme">
+            <button
+              className="mode-switch"
+              title="Switch Theme"
+              onClick={darkMode}
+            >
               <Icon icon="eva:moon-fill" width="24" height="24" />
             </button>
             <button
@@ -66,7 +77,7 @@ function MainPage() {
             />
             <div className="app-content-actions-wrapper">
               <button
-                className="action-button list active"
+                className="action-button list"
                 title="List View"
                 onClick={() => {
                   setView(true);
@@ -130,7 +141,6 @@ function MainPage() {
               return (
                 <div className="cctv-row" key={a.id}>
                   <div className="cctv-cell image">
-                    {/* {videoImage(a)} */}
                     <img
                       src={a.files}
                       alt=""

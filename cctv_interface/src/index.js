@@ -5,11 +5,9 @@ import RouterStation from "./RouterStation";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <RouterStation />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <RouterStation />
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
