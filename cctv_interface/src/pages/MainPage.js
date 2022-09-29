@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/main.css";
 import { Icon } from "@iconify/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/ko";
@@ -13,9 +13,25 @@ function MainPage() {
   let [viewStr, setViewStr] = useState("listView");
   let [gridStr, setGridStr] = useState("");
   let [listStr, setListStr] = useState("active");
+  let [target, setTarget] = useState(0);
 
   let navigate = useNavigate();
+  let location = useLocation();
 
+  function getTarget() {
+    console.log(location.state.status);
+    if (
+      location.state.status === 0 ||
+      location.state.status === 1 ||
+      location.state.status === 2 ||
+      location.state.status === 3
+    ) {
+      setTarget(location.state.status);
+    } else {
+      setTarget(4);
+    }
+    console.log(target);
+  }
   function viewActive() {
     if (view) {
       setListStr("active");
@@ -56,7 +72,9 @@ function MainPage() {
       setBoardList(res.data);
     });
   }, []);
-
+  useEffect(() => {
+    getTarget();
+  });
   return (
     <div className="mainPage">
       <div className="app-container">
@@ -112,92 +130,100 @@ function MainPage() {
             </div>
           </div>
           <div className={"cctv-area-wrapper " + viewStr}>
-            <div className="cctv-header">
-              <div className="cctv-cell image">
-                CCTV
-                <button className="sort-button">
-                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
-                </button>
-              </div>
-              <div className="cctv-cell author">
-                작성자
-                <button className="sort-button">
-                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
-                </button>
-              </div>
-              <div className="cctv-cell status-cell">
-                상태
-                <button className="sort-button">
-                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
-                </button>
-              </div>
-              <div className="cctv-cell content">
-                설명
-                <button className="sort-button">
-                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
-                </button>
-              </div>
-              <div className="cctv-cell created_date">
-                작성날짜
-                <button className="sort-button">
-                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
-                </button>
-              </div>
-              <div className="cctv-cell modified_date">
-                수정날짜
-                <button className="sort-button">
-                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
-                </button>
-              </div>
-            </div>
-            {boardList.map((a, idx) => {
-              return (
-                <div className="cctv-row" key={a.id}>
-                  <div className="cctv-cell image">
-                    <img
-                      src={a.files}
-                      alt=""
-                      onError={imageError}
-                      onClick={() => {
-                        navigate(`/board/${a.id}`);
-                      }}
-                    />
-                    <span
-                      className="searchTitle"
-                      onClick={() => {
-                        navigate(`/board/${a.id}`);
-                      }}
-                    >
-                      {a.title}
-                    </span>
+            <CCTVHeader />
+            {boardList
+              .filter((x) => 4 === target || x.status === target)
+              .map((a, idx) => {
+                return (
+                  <div className="cctv-row" key={a.id}>
+                    <div className="cctv-cell image">
+                      <img
+                        src={a.files}
+                        alt=""
+                        onError={imageError}
+                        onClick={() => {
+                          navigate(`/board/${a.id}`);
+                        }}
+                      />
+                      <span
+                        className="searchTitle"
+                        onClick={() => {
+                          navigate(`/board/${a.id}`);
+                        }}
+                      >
+                        {a.title}
+                      </span>
+                    </div>
+                    <div className="cctv-cell author">
+                      <span className="cell-label">작성자</span>
+                      <span className="searchAuthor">{a.author}</span>
+                    </div>
+                    <div className="cctv-cell status-cell">
+                      <span className="cell-label">상태:</span>
+                      <span className={"status" + a.status}>
+                        {getStatus(a.status)}
+                      </span>
+                    </div>
+                    <div className="cctv-cell content">
+                      <span className="cell-label">설명:</span>
+                      <span className="searchContent">{a.content}</span>
+                    </div>
+                    <div className="cctv-cell created_date">
+                      <span className="cell-label">작성 날짜: </span>
+                      {timeSetting(a.created_date)}
+                    </div>
+                    <div className="cctv-cell modified_date">
+                      <span className="cell-label">수정 날짜: </span>
+                      {timeSetting(a.modified_date)}
+                    </div>
                   </div>
-                  <div className="cctv-cell author">
-                    <span className="cell-label">작성자</span>
-                    <span className="searchAuthor">{a.author}</span>
-                  </div>
-                  <div className="cctv-cell status-cell">
-                    <span className="cell-label">상태:</span>
-                    <span className={"status" + a.status}>
-                      {getStatus(a.status)}
-                    </span>
-                  </div>
-                  <div className="cctv-cell content">
-                    <span className="cell-label">설명:</span>
-                    <span className="searchContent">{a.content}</span>
-                  </div>
-                  <div className="cctv-cell created_date">
-                    <span className="cell-label">작성 날짜: </span>
-                    {timeSetting(a.created_date)}
-                  </div>
-                  <div className="cctv-cell modified_date">
-                    <span className="cell-label">수정 날짜: </span>
-                    {timeSetting(a.modified_date)}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function CCTVHeader() {
+  return (
+    <div className="cctv-header">
+      <div className="cctv-cell image">
+        CCTV
+        <button className="sort-button">
+          <Icon icon="bx:sort-alt-2" width="24" height="24" />
+        </button>
+      </div>
+      <div className="cctv-cell author">
+        작성자
+        <button className="sort-button">
+          <Icon icon="bx:sort-alt-2" width="24" height="24" />
+        </button>
+      </div>
+      <div className="cctv-cell status-cell">
+        상태
+        <button className="sort-button">
+          <Icon icon="bx:sort-alt-2" width="24" height="24" />
+        </button>
+      </div>
+      <div className="cctv-cell content">
+        설명
+        <button className="sort-button">
+          <Icon icon="bx:sort-alt-2" width="24" height="24" />
+        </button>
+      </div>
+      <div className="cctv-cell created_date">
+        작성날짜
+        <button className="sort-button">
+          <Icon icon="bx:sort-alt-2" width="24" height="24" />
+        </button>
+      </div>
+      <div className="cctv-cell modified_date">
+        수정날짜
+        <button className="sort-button">
+          <Icon icon="bx:sort-alt-2" width="24" height="24" />
+        </button>
       </div>
     </div>
   );

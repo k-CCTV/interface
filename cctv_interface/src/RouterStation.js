@@ -2,7 +2,7 @@ import "./css/RouterStation.css";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import PostPage from "./pages/PostPage";
-import TestPage from "./pages/TestPage";
+
 import DetailPage from "./pages/DetailPage";
 import ModifyPage from "./pages/ModifyPage";
 function RouterStation() {
@@ -13,7 +13,7 @@ function RouterStation() {
         <Route path="/post" element={<PostPage />} />
         <Route path="/board/:id" element={<DetailPage />} />
         <Route path="/modify/:id" element={<ModifyPage />} />
-        <Route path="/test" element={<TestPage />} />
+        <Route path="/status/:str" element={<MainPage />} />
       </Routes>
     </div>
   );

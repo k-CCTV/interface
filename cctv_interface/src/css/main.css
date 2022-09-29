@@ -80,11 +80,20 @@ body {
   list-style-type: none;
   padding: 0;
 }
-.sidebar-list-item {
+.sidebar-list-item,
+.sidebar-list-item-danger,
+.sidebar-list-item-warn,
+.sidebar-list-item-normal,
+.sidebar-list-item-null {
   position: relative;
   margin-bottom: 4px;
+  cursor: pointer;
 }
-.sidebar-list-item a {
+.sidebar-list-item div,
+.sidebar-list-item-danger div,
+.sidebar-list-item-warn div,
+.sidebar-list-item-normal div,
+.sidebar-list-item-null div {
   display: flex;
   align-items: center;
   width: 100%;
@@ -94,16 +103,32 @@ body {
   font-size: 14px;
   line-height: 24px;
 }
-.sidebar-list-item svg {
+.sidebar-list-item svg,
+.sidebar-list-item-danger svg,
+.sidebar-list-item-warn svg,
+.sidebar-list-item-normal svg,
+.sidebar-list-item-null svg {
   margin-right: 8px;
 }
-.sidebar-list-item:hover {
+.sidebar-list-item:before,
+.sidebar-list-item-danger:before,
+.sidebar-list-item-warn:before,
+.sidebar-list-item-normal:before,
+.sidebar-list-item-null:before {
   background-color: var(--sidebar-hover-link);
 }
-.sidebar-list-item.active {
+.sidebar-list-item.active,
+.sidebar-list-item-danger.active,
+.sidebar-list-item-warn.active,
+.sidebar-list-item-normal.active,
+.sidebar-list-item-null.active {
   background-color: var(--sidebar-active-link);
 }
-.sidebar-list-item.active:before {
+.sidebar-list-item.active:before,
+.sidebar-list-item-danger.active:before,
+.sidebar-list-item-warn.active:before,
+.sidebar-list-item-normal.active:before,
+.sidebar-list-item-null.active:before {
   content: "";
   position: absolute;
   right: 0;

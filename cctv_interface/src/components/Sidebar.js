@@ -1,7 +1,27 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function Sidebar(props) {
+function Sidebar() {
+  let navigate = useNavigate();
+  let location = useLocation();
+  function activeControl() {
+    let str = location.pathname.split("/");
+    let activeSwitch = document.querySelector(".sidebar-list-item");
+    if (str[str.length - 1] === "danger") {
+      activeSwitch = document.querySelector(".sidebar-list-item-danger");
+    } else if (str[str.length - 1] === "normal") {
+      activeSwitch = document.querySelector(".sidebar-list-item-normal");
+    } else if (str[str.length - 1] === "warn") {
+      activeSwitch = document.querySelector(".sidebar-list-item-warn");
+    } else if (str[str.length - 1] === "null") {
+      activeSwitch = document.querySelector(".sidebar-list-item-null");
+    }
+    activeSwitch.classList.toggle("active");
+  }
+  useEffect(() => {
+    activeControl();
+  });
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -10,14 +30,26 @@ function Sidebar(props) {
         </div>
       </div>
       <ul className="sidebar-list">
-        <li className="sidebar-list-item active">
-          <a href="/">
+        <li
+          className="sidebar-list-item"
+          onClick={() => {
+            navigate("/", { state: { status: 4 } });
+            window.location.reload();
+          }}
+        >
+          <div>
             <Icon icon="ant-design:home-outlined" width="24" height="24" />
             <span>Home</span>
-          </a>
+          </div>
         </li>
-        <li className="sidebar-list-item">
-          <a href="/danger">
+        <li
+          className="sidebar-list-item-danger"
+          onClick={() => {
+            navigate("/status/danger", { state: { status: 3 } });
+            window.location.reload();
+          }}
+        >
+          <div>
             <Icon
               icon="ph:traffic-signal-light"
               color="red"
@@ -25,10 +57,16 @@ function Sidebar(props) {
               height="24"
             />
             <span>Danger</span>
-          </a>
+          </div>
         </li>
-        <li className="sidebar-list-item">
-          <a href="/warn">
+        <li
+          className="sidebar-list-item-warn"
+          onClick={() => {
+            navigate("/status/warn", { state: { status: 2 } });
+            window.location.reload();
+          }}
+        >
+          <div>
             <Icon
               icon="ph:traffic-signal-light"
               color="orange"
@@ -36,10 +74,16 @@ function Sidebar(props) {
               height="24"
             />
             <span>Warn</span>
-          </a>
+          </div>
         </li>
-        <li className="sidebar-list-item">
-          <a href="/normal">
+        <li
+          className="sidebar-list-item-normal"
+          onClick={() => {
+            navigate("/status/normal", { state: { status: 1 } });
+            window.location.reload();
+          }}
+        >
+          <div>
             <Icon
               icon="ph:traffic-signal-light"
               color="green"
@@ -47,10 +91,16 @@ function Sidebar(props) {
               height="24"
             />
             <span>Normal</span>
-          </a>
+          </div>
         </li>
-        <li className="sidebar-list-item">
-          <a href="/null">
+        <li
+          className="sidebar-list-item-null"
+          onClick={() => {
+            navigate("/status/null", { state: { status: 0 } });
+            window.location.reload();
+          }}
+        >
+          <div>
             <Icon
               icon="ph:traffic-signal-light"
               color="grey"
@@ -58,13 +108,7 @@ function Sidebar(props) {
               height="24"
             />
             <span>Null</span>
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="/test">
-            <Icon icon="ph:traffic-signal-light" width="24" height="24" />
-            <span>Test Server</span>
-          </a>
+          </div>
         </li>
       </ul>
     </div>
