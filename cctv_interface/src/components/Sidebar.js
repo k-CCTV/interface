@@ -33,7 +33,7 @@ function Sidebar() {
         <li
           className="sidebar-list-item"
           onClick={() => {
-            navigate("/", { state: { status: 4 } });
+            navigate("/");
             window.location.reload();
           }}
         >
