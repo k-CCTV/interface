@@ -13,9 +13,14 @@ function MainPage() {
   let [viewStr, setViewStr] = useState("listView");
   let [gridStr, setGridStr] = useState("");
   let [listStr, setListStr] = useState("active");
+  let [search, setSearch] = useState("");
 
   let navigate = useNavigate();
 
+  function changeSearchValue(e) {
+    e.preventDefault();
+    setSearch(e.target.value);
+  }
   function viewActive() {
     if (view) {
       setListStr("active");
@@ -85,6 +90,9 @@ function MainPage() {
               className="search-bar"
               placeholder="Search for title"
               type="text"
+              value={search}
+              onChange={changeSearchValue}
+              // onKeyUp={}
             />
             <div className="app-content-actions-wrapper">
               <button
@@ -113,52 +121,66 @@ function MainPage() {
           </div>
           <div className={"cctv-area-wrapper " + viewStr}>
             <CCTVHeader />
-            {boardList.map((a, idx) => {
-              return (
-                <div className="cctv-row" key={a.id}>
-                  <div className="cctv-cell image">
-                    <img
-                      src={a.files}
-                      alt=""
-                      onError={imageError}
-                      onClick={() => {
-                        navigate(`/board/${a.id}`);
-                      }}
-                    />
-                    <span
-                      className="searchTitle"
-                      onClick={() => {
-                        navigate(`/board/${a.id}`);
-                      }}
-                    >
-                      {a.title}
-                    </span>
+            {boardList
+              .filter((x) => {
+                return (
+                  x.title
+                    .toLocaleLowerCase()
+                    .includes(search.toLocaleLowerCase()) ||
+                  x.author
+                    .toLocaleLowerCase()
+                    .includes(search.toLocaleLowerCase()) ||
+                  x.content
+                    .toLocaleLowerCase()
+                    .includes(search.toLocaleLowerCase())
+                );
+              })
+              .map((a, idx) => {
+                return (
+                  <div className="cctv-row" key={a.id}>
+                    <div className="cctv-cell image">
+                      <img
+                        src={a.files}
+                        alt=""
+                        onError={imageError}
+                        onClick={() => {
+                          navigate(`/board/${a.id}`);
+                        }}
+                      />
+                      <span
+                        className="searchTitle"
+                        onClick={() => {
+                          navigate(`/board/${a.id}`);
+                        }}
+                      >
+                        {a.title}
+                      </span>
+                    </div>
+                    <div className="cctv-cell author">
+                      <span className="cell-label">작성자</span>
+                      <span className="searchAuthor">{a.author}</span>
+                    </div>
+                    <div className="cctv-cell status-cell">
+                      <span className="cell-label">상태:</span>
+                      <span className={"status" + a.status}>
+                        {getStatus(a.status)}
+                      </span>
+                    </div>
+                    <div className="cctv-cell content">
+                      <span className="cell-label">설명:</span>
+                      <span className="searchContent">{a.content}</span>
+                    </div>
+                    <div className="cctv-cell created_date">
+                      <span className="cell-label">작성 날짜: </span>
+                      {timeSetting(a.created_date)}
+                    </div>
+                    <div className="cctv-cell modified_date">
+                      <span className="cell-label">수정 날짜: </span>
+                      {timeSetting(a.modified_date)}
+                    </div>
                   </div>
-                  <div className="cctv-cell author">
-                    <span className="cell-label">작성자</span>
-                    <span className="searchAuthor">{a.author}</span>
-                  </div>
-                  <div className="cctv-cell status-cell">
-                    <span className="cell-label">상태:</span>
-                    <span className={"status" + a.status}>
-                      {getStatus(a.status)}
-                    </span>
-                  </div>
-                  <div className="cctv-cell content">
-                    <span className="cell-label">설명:</span>
-                    <span className="searchContent">{a.content}</span>
-                  </div>
-                  <div className="cctv-cell created_date">
-                    <span className="cell-label">작성 날짜: </span>
-                    {timeSetting(a.created_date)}
-                  </div>
-                  <div className="cctv-cell modified_date">
-                    <span className="cell-label">수정 날짜: </span>
-                    {timeSetting(a.modified_date)}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
       </div>

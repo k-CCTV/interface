@@ -13,10 +13,15 @@ function StatusPage() {
   let [viewStr, setViewStr] = useState("listView");
   let [gridStr, setGridStr] = useState("");
   let [listStr, setListStr] = useState("active");
+  let [search, setSearch] = useState("");
 
   let navigate = useNavigate();
   let location = useLocation();
 
+  function changeSearchValue(e) {
+    e.preventDefault();
+    setSearch(e.target.value);
+  }
   function viewActive() {
     if (view) {
       setListStr("active");
@@ -88,6 +93,8 @@ function StatusPage() {
               className="search-bar"
               placeholder="Search for title"
               type="text"
+              value={search}
+              onChange={changeSearchValue}
             />
             <div className="app-content-actions-wrapper">
               <button
@@ -118,6 +125,19 @@ function StatusPage() {
             <CCTVHeader />
             {boardList
               .filter((x) => x.status === location.state.status)
+              .filter((x) => {
+                return (
+                  x.title
+                    .toLocaleLowerCase()
+                    .includes(search.toLocaleLowerCase()) ||
+                  x.author
+                    .toLocaleLowerCase()
+                    .includes(search.toLocaleLowerCase()) ||
+                  x.content
+                    .toLocaleLowerCase()
+                    .includes(search.toLocaleLowerCase())
+                );
+              })
               .map((a, idx) => {
                 return (
                   <div className="cctv-row" key={a.id}>
