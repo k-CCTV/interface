@@ -34,7 +34,6 @@ function MainPage() {
     var modeSwitch = document.querySelector(".mode-switch");
     modeSwitch.addEventListener("click", function () {
       document.documentElement.classList.toggle("light");
-      modeSwitch.classList.toggle("active");
     });
   }
   function getStatus(a) {
@@ -92,7 +91,6 @@ function MainPage() {
               type="text"
               value={search}
               onChange={changeSearchValue}
-              // onKeyUp={}
             />
             <div className="app-content-actions-wrapper">
               <button

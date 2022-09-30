@@ -17,7 +17,19 @@ function Sidebar() {
     } else if (str[str.length - 1] === "null") {
       activeSwitch = document.querySelector(".sidebar-list-item-null");
     }
-    activeSwitch.classList.toggle("active");
+    document
+      .querySelector(".sidebar-list-item-danger")
+      .classList.remove("active");
+    document
+      .querySelector(".sidebar-list-item-normal")
+      .classList.remove("active");
+    document
+      .querySelector(".sidebar-list-item-warn")
+      .classList.remove("active");
+    document
+      .querySelector(".sidebar-list-item-null")
+      .classList.remove("active");
+    activeSwitch.classList.add("active");
   }
   useEffect(() => {
     activeControl();
@@ -34,7 +46,7 @@ function Sidebar() {
           className="sidebar-list-item"
           onClick={() => {
             navigate("/");
-            window.location.reload();
+            // window.location.reload();
           }}
         >
           <div>
@@ -46,7 +58,7 @@ function Sidebar() {
           className="sidebar-list-item-danger"
           onClick={() => {
             navigate("/status/danger", { state: { status: 3 } });
-            window.location.reload();
+            // window.location.reload();
           }}
         >
           <div>
@@ -63,7 +75,7 @@ function Sidebar() {
           className="sidebar-list-item-warn"
           onClick={() => {
             navigate("/status/warn", { state: { status: 2 } });
-            window.location.reload();
+            // window.location.reload();
           }}
         >
           <div>
@@ -80,7 +92,7 @@ function Sidebar() {
           className="sidebar-list-item-normal"
           onClick={() => {
             navigate("/status/normal", { state: { status: 1 } });
-            window.location.reload();
+            // window.location.reload();
           }}
         >
           <div>
@@ -97,7 +109,7 @@ function Sidebar() {
           className="sidebar-list-item-null"
           onClick={() => {
             navigate("/status/null", { state: { status: 0 } });
-            window.location.reload();
+            // window.location.reload();
           }}
         >
           <div>

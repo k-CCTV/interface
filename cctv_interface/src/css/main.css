@@ -154,13 +154,6 @@ body {
   margin-right: 8px;
   cursor: pointer;
 }
-.mode-switch .moon {
-  fill: var(--app-content-main-color);
-}
-
-.mode-switch.active .moon {
-  fill: none;
-}
 
 .account-info {
   display: flex;

@@ -62,9 +62,7 @@ function StatusPage() {
       setBoardList(res.data);
     });
   }, []);
-  //   useEffect(() => {
-  //     getTarget();
-  //   });
+
   return (
     <div className="statusPage">
       <div className="app-container">
