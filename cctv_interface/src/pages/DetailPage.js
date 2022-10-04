@@ -123,7 +123,10 @@ function DetailPage() {
               </li>
             </ul>
           </div>
-          {output()}
+          <div className="app-content-image">
+            {output()}
+            {output()}
+          </div>
         </div>
       </div>
     </div>

@@ -308,3 +308,8 @@ body {
 .statusLabel {
   margin-right: 10px;
 }
+.app-content-image {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

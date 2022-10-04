@@ -133,7 +133,7 @@ function MainPage() {
                     .includes(search.toLocaleLowerCase())
                 );
               })
-              .map((a, idx) => {
+              .map((a) => {
                 return (
                   <div className="cctv-row" key={a.id}>
                     <div className="cctv-cell image">
