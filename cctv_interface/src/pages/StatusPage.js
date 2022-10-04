@@ -18,6 +18,44 @@ function StatusPage() {
   let navigate = useNavigate();
   let location = useLocation();
 
+  function sortTitle() {
+    let temp = [...boardList];
+    temp.sort((a, b) =>
+      a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1
+    );
+    setBoardList(temp);
+  }
+  function sortAuthor() {
+    let temp = [...boardList];
+
+    temp.sort((a, b) =>
+      a.author.toLowerCase() < b.author.toLowerCase() ? -1 : 1
+    );
+    setBoardList(temp);
+  }
+  function sortStatus() {
+    let temp = [...boardList];
+
+    temp.sort((a, b) => (a.status < b.status ? -1 : 1));
+    setBoardList(temp);
+  }
+  function sortContent() {
+    let temp = [...boardList];
+    temp.sort((a, b) =>
+      a.content.toLowerCase() < b.content.toLowerCase() ? -1 : 1
+    );
+    setBoardList(temp);
+  }
+  function sortCreatedDate() {
+    let temp = [...boardList];
+    temp.sort((a, b) => (a.created_date < b.created_date ? -1 : 1));
+    setBoardList(temp);
+  }
+  function sortModifiedDate() {
+    let temp = [...boardList];
+    temp.sort((a, b) => (a.modified_date < b.modified_date ? -1 : 1));
+    setBoardList(temp);
+  }
   function changeSearchValue(e) {
     e.preventDefault();
     setSearch(e.target.value);
@@ -120,7 +158,51 @@ function StatusPage() {
             </div>
           </div>
           <div className={"cctv-area-wrapper " + viewStr}>
-            <CCTVHeader />
+            {/* <CCTVHeader /> */}
+            <div className="cctv-header">
+              <div className="cctv-cell image">
+                CCTV
+                <button className="sort-button" onClick={() => sortTitle()}>
+                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
+                </button>
+              </div>
+              <div className="cctv-cell author">
+                작성자
+                <button className="sort-button" onClick={() => sortAuthor()}>
+                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
+                </button>
+              </div>
+              <div className="cctv-cell status-cell">
+                상태
+                <button className="sort-button" onClick={() => sortStatus()}>
+                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
+                </button>
+              </div>
+              <div className="cctv-cell content">
+                설명
+                <button className="sort-button" onClick={() => sortContent()}>
+                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
+                </button>
+              </div>
+              <div className="cctv-cell created_date">
+                작성날짜
+                <button
+                  className="sort-button"
+                  onClick={() => sortCreatedDate()}
+                >
+                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
+                </button>
+              </div>
+              <div className="cctv-cell modified_date">
+                수정날짜
+                <button
+                  className="sort-button"
+                  onClick={() => sortModifiedDate()}
+                >
+                  <Icon icon="bx:sort-alt-2" width="24" height="24" />
+                </button>
+              </div>
+            </div>
             {boardList
               .filter((x) => x.status === location.state.status)
               .filter((x) => {
