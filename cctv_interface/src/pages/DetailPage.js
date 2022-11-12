@@ -132,8 +132,8 @@ function DetailPage() {
               <Icon icon="carbon:result" width="24" height="24" />
               <span>
                 {" "}
-                검출 결과 : 강과 사람이 {board.detact_result}% 곂치기 떄문에{" "}
-                {getStatus(board.status)}로 상태를 판정했습니다.
+                검출 결과 : 강과 사람이 {board.detact_result}% 곂치기 때문에{" "}
+                {getStatus(board.status)} 상태를 판정했습니다.
               </span>
             </li>
           </ul>
