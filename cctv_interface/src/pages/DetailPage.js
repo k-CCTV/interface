@@ -14,6 +14,7 @@ function DetailPage() {
   let [fileType, setFileType] = useState("");
   let [modal, setModal] = useState(false);
   let [password, setPassword] = useState("");
+  let [alert, setAlert] = useState(false);
   let navigate = useNavigate();
 
   const deleteBoard = async () => {
@@ -24,7 +25,10 @@ function DetailPage() {
           navigate("/");
         });
     } else {
-      console.log("실패~~");
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
     }
   };
   function darkMode() {
@@ -73,6 +77,7 @@ function DetailPage() {
     axios.get(`http://localhost:8080/board/${params.id}`).then((res) => {
       setBoard(res.data);
       findType(board.files);
+      console.log(board);
     });
   }, [params.id, board.files]);
 
@@ -81,6 +86,7 @@ function DetailPage() {
       <div className="app-container">
         <Sidebar />
         <div className="app-content">
+          {alert === true ? <Alert /> : null}
           <div className="app-content-header">
             <h1 className="app-content-headerText">{board.title}</h1>
             <button
@@ -182,7 +188,7 @@ function Modal({ getPassword, getModal }) {
         </div>
         <div className="button-area">
           <button
-            className="home-button"
+            className="report-button"
             onClick={() => {
               setModal(false);
               getPassword(password);
@@ -191,7 +197,25 @@ function Modal({ getPassword, getModal }) {
           >
             제출하기
           </button>
+          <button
+            className="home-button"
+            onClick={() => {
+              setModal(false);
+              getModal(modal);
+            }}
+          >
+            돌아가기
+          </button>
         </div>
+      </div>
+    </>
+  );
+}
+function Alert(props) {
+  return (
+    <>
+      <div className="alert">
+        <p> 비밀번호가 일치하지 않습니다.!!!</p>
       </div>
     </>
   );

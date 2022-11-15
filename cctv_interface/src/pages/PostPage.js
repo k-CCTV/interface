@@ -10,7 +10,7 @@ function PostPage() {
   let [fileImage, setFileImage] = useState("");
   let [Password, SetPassword] = useState("");
   let [imageDummy, setImageDummy] = useState([]);
-  let [modal, setModal] = useState(false);
+  let [alert, setAlert] = useState(false);
   const formData = new FormData();
 
   const saveFileImage = (e) => {
@@ -39,10 +39,9 @@ function PostPage() {
     formData.append("content", Content);
     formData.append("password", Password);
     if (!(Title && Author && Content)) {
-      console.log("누락");
-      setModal(true);
+      setAlert(true);
       setTimeout(() => {
-        setModal(false);
+        setAlert(false);
       }, 2000);
     } else {
       postForm();
@@ -152,15 +151,15 @@ function PostPage() {
           </div>
         </form>
       </div>
-      {modal === true ? <Modal /> : null}
+      {alert === true ? <Alert /> : null}
     </div>
   );
 }
 
-function Modal(props) {
+function Alert(props) {
   return (
     <>
-      <div className="modal">
+      <div className="alert">
         <p> 내용을 빠짐없이 작성하세요!!!</p>
       </div>
     </>

@@ -163,7 +163,8 @@ body {
   margin-left: 10px;
 }
 .app-content-headerButton1 {
-  background-color: var(--action-color);
+  /* background-color: var(--action-color); */
+  background-color: blue;
   color: #fff;
   font-size: 14px;
   line-height: 24px;
@@ -315,7 +316,7 @@ body {
   align-items: center;
   justify-content: space-around;
 }
-.home-button {
+.report-button {
   border-radius: 4px;
   height: 37px;
   width: 90px;
@@ -324,7 +325,26 @@ body {
   color: #e9ecef;
   font-size: 15px;
   cursor: pointer;
+  float: left;
+}
+.report-button:hover {
+  background-color: #0066ff;
+  border: 1px solid #0066ff;
+}
+.home-button {
+  border-radius: 4px;
+  height: 37px;
+  width: 90px;
+  background-color: red;
+  border: 1px solid red;
+  color: #e9ecef;
+  font-size: 15px;
+  cursor: pointer;
   float: right;
+}
+.home-button:hover {
+  background-color: tomato;
+  border: 1px solid tomato;
 }
 .modal-box {
   position: absolute;
@@ -378,4 +398,13 @@ body {
   left: 0;
   color: #03e9f4;
   font-size: 12px;
+}
+.alert {
+  position: relative;
+  z-index: 999;
+  padding: 20px;
+  background: tomato;
+  color: white;
+  font-size: xx-large;
+  text-align: center;
 }

@@ -1,15 +1,19 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../css/post.css";
 
 function ModifyPage() {
   let navigate = useNavigate();
+  let [board, setBoard] = useState("");
   let [Title, SetTitle] = useState("");
   let [Author, SetAuthor] = useState("");
   let [Content, SetContent] = useState("");
+  let [Password, SetPassword] = useState("");
   let [fileImage, setFileImage] = useState("");
   let [imageDummy, setImageDummy] = useState([]);
+  let [alert, setAlert] = useState(false);
+  let [alertStr, setAlertStr] = useState("내용을 빠짐없이 작성하세요!!!");
   let params = useParams();
 
   const formData = new FormData();
@@ -39,10 +43,20 @@ function ModifyPage() {
     formData.append("author", Author);
     formData.append("content", Content);
 
-    if (!(Title || Author || Content)) {
-      console.log("누락");
-    } else {
+    if (!(Title && Author && Content)) {
+      setAlertStr("내용을 빠짐없이 작성하세요!!!");
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
+    } else if (Password === board.password) {
       updateForm();
+    } else {
+      setAlertStr("비밀번호가 일치하지 않습니다!!!");
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
     }
   };
 
@@ -62,7 +76,11 @@ function ModifyPage() {
         console.log(error);
       });
   };
-
+  useEffect(() => {
+    axios.get(`http://localhost:8080/modify/${params.id}`).then((res) => {
+      setBoard(res.data);
+    });
+  }, [params.id, board.files]);
   return (
     <div className="modifyPage">
       <div className="form-box">
@@ -123,6 +141,19 @@ function ModifyPage() {
             />
             <label>동영상 선택</label>
           </div>
+          <div className="user-box">
+            <input
+              type="text"
+              name="password"
+              className="form-control"
+              id="inputPassword"
+              required=""
+              onChange={(e) => {
+                SetPassword(e.target.value);
+              }}
+            />
+            <label>비밀번호 (기본값: 1234)</label>
+          </div>
           <div className="button-area">
             <input className="submit-button" type="submit" value="등록하기" />
             <button
@@ -136,8 +167,17 @@ function ModifyPage() {
           </div>
         </form>
       </div>
+      {alert === true ? <Alert alertStr={alertStr} /> : null}
     </div>
   );
 }
-
+function Alert(props) {
+  return (
+    <>
+      <div className="alert">
+        <p> {props.alertStr}</p>
+      </div>
+    </>
+  );
+}
 export default ModifyPage;
