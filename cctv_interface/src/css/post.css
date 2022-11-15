@@ -89,3 +89,12 @@
   background-color: #6291fd;
   border: 1px solid #6291fd;
 }
+.modal {
+  position: relative;
+  margin-top: 20px;
+  padding: 20px;
+  background: tomato;
+  color: white;
+  font-size: xx-large;
+  text-align: center;
+}

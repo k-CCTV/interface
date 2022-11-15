@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/post.css";
 import axios from "axios";
@@ -8,8 +8,9 @@ function PostPage() {
   let [Author, SetAuthor] = useState("");
   let [Content, SetContent] = useState("");
   let [fileImage, setFileImage] = useState("");
+  let [Password, SetPassword] = useState("");
   let [imageDummy, setImageDummy] = useState([]);
-
+  let [modal, setModal] = useState(false);
   const formData = new FormData();
 
   const saveFileImage = (e) => {
@@ -36,9 +37,13 @@ function PostPage() {
     formData.append("title", Title);
     formData.append("author", Author);
     formData.append("content", Content);
-
-    if (!(Title || Author || Content)) {
+    formData.append("password", Password);
+    if (!(Title && Author && Content)) {
       console.log("누락");
+      setModal(true);
+      setTimeout(() => {
+        setModal(false);
+      }, 2000);
     } else {
       postForm();
     }
@@ -61,7 +66,6 @@ function PostPage() {
         console.log(error);
       });
   };
-
   return (
     <div className="postPage">
       <div className="form-box">
@@ -122,6 +126,19 @@ function PostPage() {
             />
             <label>동영상 선택</label>
           </div>
+          <div className="user-box">
+            <input
+              type="text"
+              name="password"
+              className="form-control"
+              id="inputPassword"
+              required=""
+              onChange={(e) => {
+                SetPassword(e.target.value);
+              }}
+            />
+            <label>비밀번호 (기본값: 1234)</label>
+          </div>
           <div className="button-area">
             <input className="submit-button" type="submit" value="등록하기" />
             <button
@@ -135,8 +152,18 @@ function PostPage() {
           </div>
         </form>
       </div>
+      {modal === true ? <Modal /> : null}
     </div>
   );
 }
 
+function Modal(props) {
+  return (
+    <>
+      <div className="modal">
+        <p> 내용을 빠짐없이 작성하세요!!!</p>
+      </div>
+    </>
+  );
+}
 export default PostPage;
