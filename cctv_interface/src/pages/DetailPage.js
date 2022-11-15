@@ -12,12 +12,20 @@ function DetailPage() {
   let params = useParams();
   let [board, setBoard] = useState("");
   let [fileType, setFileType] = useState("");
+  let [modal, setModal] = useState(false);
+  let [password, setPassword] = useState("");
   let navigate = useNavigate();
 
   const deleteBoard = async () => {
-    await axios.delete(`http://localhost:8080/board/${params.id}`).then(() => {
-      navigate("/");
-    });
+    if (password === board.password) {
+      await axios
+        .delete(`http://localhost:8080/board/${params.id}`)
+        .then(() => {
+          navigate("/");
+        });
+    } else {
+      console.log("실패~~");
+    }
   };
   function darkMode() {
     var modeSwitch = document.querySelector(".mode-switch");
@@ -54,6 +62,13 @@ function DetailPage() {
     let time = moment(a).format("YY-MM-DD HH:mm:ss");
     return time;
   }
+  function getPassword(x) {
+    setPassword(x);
+    deleteBoard();
+  }
+  function getModal(x) {
+    setModal(x);
+  }
   useEffect(() => {
     axios.get(`http://localhost:8080/board/${params.id}`).then((res) => {
       setBoard(res.data);
@@ -86,7 +101,8 @@ function DetailPage() {
             <button
               className="app-content-headerButton2"
               onClick={() => {
-                deleteBoard();
+                // deleteBoard();
+                setModal(true);
               }}
             >
               삭제하기
@@ -137,10 +153,47 @@ function DetailPage() {
               </span>
             </li>
           </ul>
+          {modal === true ? (
+            <Modal getPassword={getPassword} getModal={getModal} />
+          ) : null}
         </div>
       </div>
     </div>
   );
 }
-
+function Modal({ getPassword, getModal }) {
+  let [password, setPassword] = useState("");
+  let [modal, setModal] = useState(true);
+  return (
+    <>
+      <div className="modal-box">
+        <div className="user-box">
+          <input
+            type="text"
+            name="password"
+            className="form-control"
+            id="inputPassword"
+            required=""
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <label>비밀번호</label>
+        </div>
+        <div className="button-area">
+          <button
+            className="home-button"
+            onClick={() => {
+              setModal(false);
+              getPassword(password);
+              getModal(modal);
+            }}
+          >
+            제출하기
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
 export default DetailPage;
