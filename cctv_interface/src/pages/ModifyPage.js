@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../css/post.css";
+import Alert from "../components/Alert";
 
 function ModifyPage() {
   let navigate = useNavigate();
@@ -171,13 +172,13 @@ function ModifyPage() {
     </div>
   );
 }
-function Alert(props) {
-  return (
-    <>
-      <div className="alert">
-        <p> {props.alertStr}</p>
-      </div>
-    </>
-  );
-}
+// function Alert(props) {
+//   return (
+//     <>
+//       <div className="alert">
+//         <p> {props.alertStr}</p>
+//       </div>
+//     </>
+//   );
+// }
 export default ModifyPage;

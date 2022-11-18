@@ -7,6 +7,7 @@ import ReactPlayer from "react-player";
 import moment from "moment";
 import "moment/locale/ko";
 import Sidebar from "../components/Sidebar";
+import Alert from "../components/Alert";
 
 function DetailPage() {
   let params = useParams();
@@ -15,6 +16,7 @@ function DetailPage() {
   let [modal, setModal] = useState(false);
   let [password, setPassword] = useState("");
   let [alert, setAlert] = useState(false);
+  let [alertStr, setAlertStr] = useState("");
   let navigate = useNavigate();
 
   const deleteBoard = async () => {
@@ -25,6 +27,7 @@ function DetailPage() {
           navigate("/");
         });
     } else {
+      setAlertStr("비밀번호가 일치하지 않습니다!!!");
       setAlert(true);
       setTimeout(() => {
         setAlert(false);
@@ -86,7 +89,7 @@ function DetailPage() {
       <div className="app-container">
         <Sidebar />
         <div className="app-content">
-          {alert === true ? <Alert /> : null}
+          {alert === true ? <Alert alertStr={alertStr} /> : null}
           <div className="app-content-header">
             <h1 className="app-content-headerText">{board.title}</h1>
             <button
@@ -211,13 +214,13 @@ function Modal({ getPassword, getModal }) {
     </>
   );
 }
-function Alert(props) {
-  return (
-    <>
-      <div className="alert">
-        <p> 비밀번호가 일치하지 않습니다.!!!</p>
-      </div>
-    </>
-  );
-}
+// function Alert(props) {
+//   return (
+//     <>
+//       <div className="alert">
+//         <p> 비밀번호가 일치하지 않습니다.!!!</p>
+//       </div>
+//     </>
+//   );
+// }
 export default DetailPage;
