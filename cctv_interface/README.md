@@ -12,15 +12,15 @@
 
 ## 📒 기술 스택
 
-[<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />]()&nbsp;&nbsp;
+[<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />]()
 
-[<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green" alt="Django"/>]()&nbsp;&nbsp
+[<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green" alt="Django"/>]()
 
-[<img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" />]()&nbsp;&nbsp;
+[<img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" />]()
 
-[![img](https://img.shields.io/badge/Mask_R--cnn-EB3C00?style=for-the-badge)]()&nbsp;&nbsp;
+[![img](https://img.shields.io/badge/Mask_R--cnn-EB3C00?style=for-the-badge)]()
 
-[<img src="https://img.shields.io/badge/YOLO__V5-00FFFF?style=for-the-badge&logo=yolo&logoColor=blue" />]()&nbsp;&nbsp;
+[<img src="https://img.shields.io/badge/YOLO__V5-00FFFF?style=for-the-badge&logo=yolo&logoColor=blue" />]()
 
 ------
 
@@ -43,8 +43,11 @@
 ## Demo 영상
 
 - **List View & Grid View**
+
   ![리스트그리드_AdobeExpress](https://user-images.githubusercontent.com/57166073/203550192-3dcfd18e-4bef-48e7-984a-b53ab41ba698.gif)
+
 - **Dark Mode**
+
   ![다크모드_AdobeExpress](https://user-images.githubusercontent.com/57166073/203550191-05d0f471-fbe1-4356-ab1b-848e534d9c8a.gif)
 
 - **검색**
@@ -56,9 +59,11 @@
   ![정렬_AdobeExpress](https://user-images.githubusercontent.com/57166073/203550214-0e142090-fe89-4b25-a548-e352a77353b3.gif)
 
 - **상태 별 분류**
+
   ![상태별보기_AdobeExpress](https://user-images.githubusercontent.com/57166073/203550204-8296a370-bce6-4b49-90a7-7cc610aa1abd.gif)
 
-- **검출 결과 출력 **
+- **검출 결과 출력**
+
   ![KakaoTalk_Photo_2022-11-23-21-43-44](https://user-images.githubusercontent.com/57166073/203550222-e38b8380-45be-4f43-add8-7fd149154876.gif)
 
   
