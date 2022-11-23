@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# 강 주변 위험사고 검출을 위한 지능형 CCTV 기술
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+------
 
-## Available Scripts
+## 🙏 팀원 소개 & 역할
 
-In the project directory, you can run:
+- [![김태인](https://img.shields.io/badge/충북대학교%20소프트웨어학과-김태인-red)]()&nbsp;&nbsp; : Semantic Segmentation
+- [![송주한](https://img.shields.io/badge/충북대학교%20소프트웨어학과-송주한-yellow)]()&nbsp;&nbsp; : Object Detection
+- [![최성운](https://img.shields.io/badge/충북대학교%20소프트웨어학과-최성운-success)]()&nbsp;&nbsp; : Front-End, Back-End, DB
 
-### `npm start`
+------
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📒 기술 스택
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />]()&nbsp;&nbsp;&nbsp;&nbsp;
 
-### `npm test`
+[<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green" alt="Django"/>]()&nbsp;&nbsp;&nbsp;&nbsp;
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[<img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" />]()&nbsp;&nbsp;
 
-### `npm run build`
+[![img](https://img.shields.io/badge/Mask_R--cnn-EB3C00?style=for-the-badge)]()&nbsp;&nbsp;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[<img src="https://img.shields.io/badge/YOLO__V5-00FFFF?style=for-the-badge&logo=yolo&logoColor=blue" />]()&nbsp;&nbsp;
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+------
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ ## 💾 주요 기능
 
-### `npm run eject`
+- **위험사고 검출** : 사람객체와 강이 곂쳐있는 정도, 시간, 거리를 종합하여 "정상", "경고", "위험" 3단계로 분류하여 출력한다.
+- Semantic Segmentation : 영상 내에서 강과 육지의 경계를 검출한다.
+- **Object Detection** : 영상 내에서 사람 객체를 검출하여 박스형태로 출력한다.
+- **Grid View, List View** : 사용자의 편의를 위해 Grid View와 List View 2가지 방식으로 CCTV목록을 출력한다
+- **검색, 정렬** : 원하는 CCTV영상을 검색과 정렬버튼을 통해 빠르게 찾을 수 있다.
+- **Dark Mode** : 사용자가 버튼을 눌러서 인터페이스를 흰색 배경의 검은 글씨로 바꾸거나 검은 배경의 흰 글씨로 바꿀 수 있다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+------
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Demo 영상
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **List View & Gride View**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<video src="/Users/kkahlua/my_root/스크린샷/리스트그리드.mov"></video>
 
-## Learn More
+- **Dark Mode**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  <video src="/Users/kkahlua/my_root/스크린샷/다크모드.mov"></video>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **검색**
 
-### Code Splitting
+  <video src="/Users/kkahlua/my_root/스크린샷/검색.mov"></video>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **정렬**
 
-### Analyzing the Bundle Size
+  <video src="/Users/kkahlua/my_root/스크린샷/정렬.mov"></video>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **상태 별 분류**
 
-### Making a Progressive Web App
+  <video src="/Users/kkahlua/my_root/스크린샷/상태별보기.mov"></video>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **검출 결과 출력**
