@@ -62,7 +62,7 @@
 
   ![상태별보기_AdobeExpress](https://user-images.githubusercontent.com/57166073/203550204-8296a370-bce6-4b49-90a7-7cc610aa1abd.gif)
 
-- **검출 결과 출력 
+- **검출 결과 출력** 
 
   ![KakaoTalk_Photo_2022-11-23-21-43-44](https://user-images.githubusercontent.com/57166073/203550222-e38b8380-45be-4f43-add8-7fd149154876.gif)
 
