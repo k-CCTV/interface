@@ -38,23 +38,18 @@
 ## Demo 영상
 
 - **List View & Gride View**
-
-<video src="/Users/kkahlua/my_root/스크린샷/리스트그리드.mov"></video>
-
-- **Dark Mode**
-
-  <video src="/Users/kkahlua/my_root/스크린샷/다크모드.mov"></video>
+  ![리스트그리드_AdobeExpress](/Users/kkahlua/Downloads/리스트그리드_AdobeExpress.gif)
+- Dark Mode**
+  ![다크모드_AdobeExpress](/Users/kkahlua/Downloads/다크모드_AdobeExpress.gif)
 
 - **검색**
 
-  <video src="/Users/kkahlua/my_root/스크린샷/검색.mov"></video>
+  ![검색_AdobeExpress](/Users/kkahlua/Downloads/검색_AdobeExpress.gif)
 
 - **정렬**
 
-  <video src="/Users/kkahlua/my_root/스크린샷/정렬.mov"></video>
+  ![정렬_AdobeExpress](/Users/kkahlua/Downloads/정렬_AdobeExpress.gif)
 
 - **상태 별 분류**
 
-  <video src="/Users/kkahlua/my_root/스크린샷/상태별보기.mov"></video>
-
-- **검출 결과 출력**
+  ![상태별보기_AdobeExpress](/Users/kkahlua/Downloads/상태별보기_AdobeExpress.gif)
