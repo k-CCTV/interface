@@ -65,6 +65,18 @@ function DetailPage() {
       );
     else return <img src={board.files} alt="" className="info-image" />;
   }
+function detect_output() {
+    if (fileType === ".mp4")
+      return (
+        <ReactPlayer
+          url={board.detect_files}
+          playing={true}
+          muted={true}
+          controls={true}
+        />
+      );
+    else return <img src={board.detect_files} alt="" className="info-image" />;
+  }
   function timeSetting(a) {
     let time = moment(a).format("YY-MM-DD HH:mm:ss");
     return time;
@@ -150,7 +162,7 @@ function DetailPage() {
           </div>
           <div className="app-content-image">
             {output()}
-            {output()}
+            {detect_output()}
           </div>
           <ul className="info-list">
             <li className="info-list-item">
